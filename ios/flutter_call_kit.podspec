@@ -16,6 +16,10 @@ A new flutter plugin project.
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '12.1'
+
+  s.preserve_paths = 'AVFoundation.framework'
+  s.xcconfig = { 'OTHER_LDFLAGS' => '-framework AVFoundation' }
+  s.vendored_frameworks = 'AVFoundation.framework'
 end
 

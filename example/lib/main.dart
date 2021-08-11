@@ -11,8 +11,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _configured;
-  String _currentCallId;
+  bool? _configured;
+  String? _currentCallId;
   FlutterCallKit _callKit = FlutterCallKit();
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
   /// Use startCall to ask the system to start a call - Initiate an outgoing call from this point
   Future<void> startCall(String handle, String localizedCallerName) async {
     /// Your normal start call action
-    await _callKit.startCall(currentCallId, handle, localizedCallerName);
+    await _callKit.startCall(currentCallId!, handle, localizedCallerName);
   }
 
   Future<void> reportEndCallWithUUID(String uuid, EndReason reason) async {
@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _performEndCallAction(String uuid) async {
-    await _callKit.endCall(this.currentCallId);
+    await _callKit.endCall(this.currentCallId!);
     _currentCallId = null;
   }
 
@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
     // Called when the system or user holds a call
   }
 
-  String get currentCallId {
+  String? get currentCallId {
     if (_currentCallId == null) {
       final uuid = new Uuid();
       _currentCallId = uuid.v4();
